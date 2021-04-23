@@ -1,47 +1,41 @@
-import random
+#initiate the word bank and run the user interface
+def main():
+	word_bank = init_default_words()
 
-print("Welcome to hangman...")
+	main_menu(word_bank)
 
-lives = 10
+#initiate a default set of words containing five categories with ten words each
+def init_default_words():
+	return {	"fruits"	: ["mango", "pineapple", "pitaya", "papaya", "banana",
+								"apple", "pear", "lemon", "cantaloupe", "watermelon"],
+				"meats"		: ["beef", "pork", "chicken", "lamb", "venison",
+								"fish", "lobster", "goat", "turkey", "crab"],
+				"cheeses"	: ["gruyere", "mozzarella", "cheddar", "ricotta", "swiss",
+								"provolone", "manchego", "parmesan", "muenster", "oaxaca"],
+				"vegetables": ["corn", "onion", "broccoli", "carrot", "zucchini",
+								"potato", "eggplant", "bean", "turnip", "cabbage"],
+				"pastries"	: ["croissant", "strudel", "cake", "madeleine", "cookie",
+								"macaron", "cupcake", "brownie", "flan", "tart"]}
 
-word_bank = {   "fruits" : ["apple", "banana", "pear"],
-                "meats" : ["poultry", "beef", "pork"] }
+def main_menu(word_bank={}):
+	'''usage: main_menu(word_bank={})
+	sets up a user interface, giving the options:
+		"play": to play the game
+		"add": to add a category or a word to the word bank
+		"exit": to exit the input loop
 
-category = random.choice(list(word_bank.keys()))
+	if no word bank is supplied an empty word bank will be initialized'''
 
-word = word_bank[category][random.randrange(len(word_bank[category]))]
+	while user_input != "exit"
+		user_input = input("What would you like to do?\noptions are: 'play', 'add', and 'exit'").lower()
 
-blanks = [ "_" for i in range(len(word)) ]
+		if user_input == "play":
+			try:
+				play(word_bank)
+			except Exception as e:
+				print(e)
 
-letters_used = ""
-
-print("The category is " + category)
-
-# print pretty
-# for i in blanks:
-# 	print(i, end= ' ')
-# print('')
-
-print(blanks)
-
-while lives:
-	guess = input("Guess a letter: ").lower()
-	if len(guess) != 1:
-		print("Only one letter at a time please!")
-	else:
-		if guess in letters_used:
-			print("You already guessed that character!")
-		elif guess in word:
-			for i in range(len(word)):
-				if word[i] in guess:
-					blanks[i] = word[i]
-			print("Correct!")
-			print(blanks)
-		else:
-			lives -= 1
-			print("wrong, lives left: {}".format(lives))
-		letters_used += (guess)
-		if not '_' in blanks:
-			print("CONGRATULATIONS!\nYOU WIN!")
-			exit()
-print("GAME OVER")
+#TODO define play and its options to select a category or to use a random category
+#also handle the error for if the word bank is empty
+#define add and its options to add a category or a word to a category
+#maybe reformat the user loop to work within one try except to catch all errors at once
