@@ -1,5 +1,6 @@
 import random
 
+#this is a proof of concept script that implements the simple functionality of the game
 print("Welcome to hangman...")
 
 lives = 10
