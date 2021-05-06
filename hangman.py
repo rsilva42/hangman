@@ -245,7 +245,5 @@ def remove_word(word_bank):
 	else:
 		print("category not found, please try again...")
 
-#TODO documentation for add and remove functions
-
 if __name__ == '__main__':
 	main()
