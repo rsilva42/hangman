@@ -38,6 +38,7 @@ def main_menu(word_bank={}):
 	while True:
 		user_input = input("What would you like to do?\nOptions are: 'play', 'add', 'remove' and 'exit'\n").lower()
 
+		#goes through the input options and calls the corresponding function (or breaks the user loop on 'exit')
 		try:
 			if user_input == "play":
 				select_category(word_bank)
@@ -147,10 +148,15 @@ def display_blanks(blanks):
 
 	for char in blanks:
 		print(char, end=' ')
+
 	#empty print for the new line at the end
 	print('')
 
 def bank_add(word_bank):
+	'''usage: bank_add(word_bank)
+
+	prompts the user whether they would like to add either a category or a word to word_bank'''
+
 	user_input = input("What would you like to add?\nOptions are: 'category' and 'word'\n").lower()
 
 	if user_input == "category":
@@ -159,6 +165,10 @@ def bank_add(word_bank):
 		add_word(word_bank)
 
 def add_category(word_bank):
+	'''usage: add_category(word_bank)
+
+	prompts the user for a new category and adds it to word_bank'''
+
 	category_to_add = input("What category would you like to add?\n").lower()
 
 	user_input = input("Is {} good? yes/no (this will overwrite existing categories)\n".format(category_to_add)).lower()
@@ -169,6 +179,10 @@ def add_category(word_bank):
 
 
 def add_word(word_bank):
+	'''usage: add_word(word_bank)
+
+	prompts the user for a category and a new word to add the word to the category given in word_bank'''
+
 	category = input("What category would you like to add the word to?\n").lower()
 
 	if (category in word_bank.keys()):
@@ -183,6 +197,10 @@ def add_word(word_bank):
 		print("category not found, please try again...")
 
 def bank_remove(word_bank):
+	'''usage: bank_remove(word_bank)
+
+	prompts the user whether they would like to remove either a category or a word to word_bank'''
+
 	user_input = input("What would you like to remove?\nOptions are: 'category' and 'word'\n").lower()
 
 	if user_input == "category":
@@ -191,6 +209,10 @@ def bank_remove(word_bank):
 		remove_word(word_bank)
 
 def remove_category(word_bank):
+	'''usage: remove_category(word_bank)
+
+	prompts the user for a category to delete from word_bank'''
+
 	category_to_remove = input("What category would you like to remove?\n").lower()
 
 	if category_to_remove in word_bank.keys():
@@ -203,6 +225,10 @@ def remove_category(word_bank):
 		print("{} category does not exist".format(category_to_remove))
 
 def remove_word(word_bank):
+	'''usage: remove_word(word_bank)
+
+	prompts the user for a category and a word to remove the word from the category given in word_bank'''
+
 	category = input("In which category is the word you would like to remove?\n").lower()
 
 	if (category in word_bank.keys()):
